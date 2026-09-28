@@ -17,6 +17,7 @@ export interface Product {
   details: string;
   featured?: boolean;
   gradient: string;
+  image: string;
 }
 
 export const CATEGORY_LABELS: Record<Category, string> = {
@@ -46,6 +47,7 @@ export const products: Product[] = [
     details: "Notas y marca según existencia. Ideal para el día a día en Mexicali.",
     featured: true,
     gradient: "from-rose-100 via-pink-300 to-fuchsia-800",
+    image: "/products/01.jpg",
   },
   {
     slug: "fragancia-fresca-caballero",
@@ -59,6 +61,7 @@ export const products: Product[] = [
     details: "Presentación según existencia. Te orientamos si buscas algo más intenso.",
     featured: true,
     gradient: "from-slate-200 via-indigo-300 to-slate-800",
+    image: "/products/02.jpg",
   },
   {
     slug: "set-fragancia-duo",
@@ -71,6 +74,7 @@ export const products: Product[] = [
     details: "Armamos el set según lo que hay en local.",
     featured: true,
     gradient: "from-amber-100 via-rose-200 to-purple-800",
+    image: "/products/03.jpg",
   },
   {
     slug: "base-maquillaje",
@@ -84,6 +88,7 @@ export const products: Product[] = [
     details: "Acabado y tonos sujetos a stock. Pregunta por bases disponibles.",
     featured: true,
     gradient: "from-orange-100 via-rose-200 to-stone-700",
+    image: "/products/04.jpg",
   },
   {
     slug: "labial-creme",
@@ -96,6 +101,7 @@ export const products: Product[] = [
     details: "Tonos sujetos a existencia en Justo Sierra.",
     featured: true,
     gradient: "from-rose-200 via-red-300 to-rose-900",
+    image: "/products/05.jpg",
   },
   {
     slug: "paleta-sombras",
@@ -107,6 +113,7 @@ export const products: Product[] = [
     shortDescription: "Sombras para look diario o de noche. Confirma stock al pedir.",
     details: "Consulta otras paletas en camino o en local.",
     gradient: "from-stone-200 via-amber-200 to-stone-700",
+    image: "/products/06.jpg",
   },
   {
     slug: "cosmetico-esencial-diario",
@@ -119,6 +126,7 @@ export const products: Product[] = [
     details: "Variedad según arrivals en Mexicali.",
     featured: true,
     gradient: "from-pink-100 via-rose-200 to-pink-800",
+    image: "/products/07.jpg",
   },
   {
     slug: "limpiador-facial",
@@ -131,6 +139,7 @@ export const products: Product[] = [
     details: "Parte de rutina básica — confirma presentación.",
     featured: true,
     gradient: "from-sky-100 via-teal-200 to-cyan-800",
+    image: "/products/08.jpg",
   },
   {
     slug: "hidratante-dia",
@@ -142,6 +151,7 @@ export const products: Product[] = [
     shortDescription: "Hidratación ligera para el clima de Mexicali.",
     details: "Textura y stock se confirman al pedir.",
     gradient: "from-emerald-100 via-teal-200 to-emerald-800",
+    image: "/products/09.jpg",
   },
   {
     slug: "calzado-arrival-sneakers",
@@ -155,6 +165,7 @@ export const products: Product[] = [
     details: "Incluye temporadas con New Balance y otras líneas según llegada.",
     featured: true,
     gradient: "from-stone-100 via-neutral-300 to-stone-800",
+    image: "/products/10.jpg",
   },
   {
     slug: "calzado-casual",
@@ -166,6 +177,7 @@ export const products: Product[] = [
     shortDescription: "Calzado original — confirma modelo y talla al 686 2340805.",
     details: "Inventario rota; te confirmamos al momento.",
     gradient: "from-amber-50 via-stone-300 to-amber-900",
+    image: "/products/11.jpg",
   },
   {
     slug: "kit-apartado-favorito",
@@ -179,6 +191,7 @@ export const products: Product[] = [
     details: "Pregunta condiciones de apartado al pedir por WhatsApp o en local.",
     featured: true,
     gradient: "from-fuchsia-100 via-pink-300 to-purple-900",
+    image: "/products/12.jpg",
   },
 ];
 
