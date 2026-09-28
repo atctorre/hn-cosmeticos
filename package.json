@@ -4,9 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "npm run write-product-photos && next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "write-product-photos": "node scripts/write-product-photos.mjs"
   },
   "dependencies": {
     "next": "16.3.6",
