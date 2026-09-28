@@ -8,10 +8,6 @@ const outDir = join(root, "public/products");
 mkdirSync(outDir, { recursive: true });
 
 function loadB64(stem) {
-  const whole = join(srcDir, `${stem}.b64`);
-  if (existsSync(whole)) {
-    return readFileSync(whole, "utf8").trim();
-  }
   const parts = readdirSync(srcDir)
     .filter((f) => f.startsWith(`${stem}.part`))
     .sort((a, b) => {
@@ -19,8 +15,14 @@ function loadB64(stem) {
       const nb = Number(b.split("part")[1]);
       return na - nb;
     });
-  if (parts.length === 0) return null;
-  return parts.map((f) => readFileSync(join(srcDir, f), "utf8").trim()).join("");
+  if (parts.length > 0) {
+    return parts.map((f) => readFileSync(join(srcDir, f), "utf8").trim()).join("");
+  }
+  const whole = join(srcDir, `${stem}.b64`);
+  if (existsSync(whole)) {
+    return readFileSync(whole, "utf8").trim();
+  }
+  return null;
 }
 
 const stems = new Set();
