@@ -1,8 +1,8 @@
 export const WHATSAPP_NUMBER = "526862340805";
 export const PHONE_DISPLAY = "686 2340805";
 export const PHONE_TEL = "+526862340805";
-export const INSTAGRAM_HANDLE = "hn_cosmeticosyperfumeria";
-export const INSTAGRAM_URL = "https://instagram.com/hn_cosmeticosyperfumeria";
+export const INSTAGRAM_HANDLE = "hncosmeticosyperfumeria";
+export const INSTAGRAM_URL = "https://instagram.com/hncosmeticosyperfumeria";
 export const SITE_NAME = "HN Cosméticos y Perfumería";
 export const SITE_URL = "https://hn-cosmeticos.vercel.app";
 export const CITY = "Mexicali, Baja California";
