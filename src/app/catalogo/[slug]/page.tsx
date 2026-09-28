@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import BeautyPlaceholder from "@/components/BeautyPlaceholder";
@@ -34,38 +35,89 @@ export default async function ProductPage({ params }: Props) {
   const { slug } = await params;
   const product = getProduct(slug);
   if (!product) notFound();
-  const related = getByCategory(product.category).filter((p) => p.slug !== product.slug).slice(0, 3);
+  const related = getByCategory(product.category)
+    .filter((p) => p.slug !== product.slug)
+    .slice(0, 3);
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
       <nav className="text-sm text-mauve">
-        <Link href="/catalogo" className="hover:text-rose">Catálogo</Link>
+        <Link href="/catalogo" className="hover:text-rose">
+          Catálogo
+        </Link>
         <span className="mx-2">/</span>
         <span>{CATEGORY_LABELS[product.category]}</span>
       </nav>
       <div className="mt-8 grid gap-10 lg:grid-cols-2">
-        <BeautyPlaceholder label={product.name} gradient={product.gradient} aspect="aspect-[4/5]" badge={CATEGORY_LABELS[product.category]} className="shadow-xl shadow-plum/15" />
+        <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-blush-mid shadow-xl shadow-plum/15">
+          {product.image ? (
+            <Image
+              src={product.image}
+              alt={product.name}
+              fill
+              className="object-cover"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              priority
+            />
+          ) : (
+            <BeautyPlaceholder
+              label={product.name}
+              gradient={product.gradient}
+              aspect="aspect-[4/5]"
+              badge={CATEGORY_LABELS[product.category]}
+              className="h-full w-full rounded-none"
+            />
+          )}
+          <span className="absolute left-3 top-3 z-10 rounded-full bg-plum-deep/70 px-2.5 py-0.5 text-[10px] font-medium uppercase tracking-wider text-blush backdrop-blur">
+            {CATEGORY_LABELS[product.category]}
+          </span>
+        </div>
         <div>
-          <p className="text-xs uppercase tracking-[0.2em] text-rose">{product.brand} · {CATEGORY_LABELS[product.category]} · {GENDER_LABELS[product.gender]}</p>
+          <p className="text-xs uppercase tracking-[0.2em] text-rose">
+            {product.brand} · {CATEGORY_LABELS[product.category]} · {GENDER_LABELS[product.gender]}
+          </p>
           <h1 className="mt-3 font-serif text-4xl text-plum">{product.name}</h1>
           <p className="mt-4 leading-relaxed text-mauve">{product.shortDescription}</p>
           <p className="mt-4 text-sm text-plum-muted">{product.details}</p>
+          <div className="mt-6">
+            <p className="text-xs uppercase tracking-[0.15em] text-rose">Variantes</p>
+            <div className="mt-2 flex flex-wrap gap-2">
+              {product.variants.map((v) => (
+                <span
+                  key={v}
+                  className="rounded-full border border-blush-deep bg-blush-soft px-3 py-1.5 text-sm text-plum"
+                >
+                  {v}
+                </span>
+              ))}
+            </div>
+          </div>
           <div className="mt-6 flex flex-wrap gap-2">
-            {product.variants.map((v) => (
-              <span key={v} className="rounded-full border border-blush-deep bg-blush-soft px-3 py-1.5 text-sm text-plum">{v}</span>
-            ))}
+            <span className="rounded-full bg-rose/10 px-3 py-1 text-xs uppercase tracking-wider text-rose">
+              Consultar disponibilidad
+            </span>
+            <span className="rounded-full bg-blush-soft px-3 py-1 text-xs uppercase tracking-wider text-plum-muted">
+              Precio por WhatsApp / teléfono
+            </span>
           </div>
           <div className="mt-8 flex flex-wrap gap-3">
-            <WhatsAppButton message={WA_MESSAGES.product(product.name, product.variants[0])}>Pedir por WhatsApp</WhatsAppButton>
+            <WhatsAppButton message={WA_MESSAGES.product(product.name, product.variants[0])}>
+              Pedir por WhatsApp
+            </WhatsAppButton>
             <CallButton variant="ghost">Llamar {PHONE_DISPLAY}</CallButton>
           </div>
+          <p className="mt-6 text-xs text-mauve">
+            Los precios y el stock se confirman al pedir. Atención desde Mexicali al {PHONE_DISPLAY}.
+          </p>
         </div>
       </div>
       {related.length > 0 && (
         <section className="mt-16">
           <h2 className="font-serif text-2xl text-plum">Productos relacionados</h2>
           <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {related.map((p) => <ProductCard key={p.slug} product={p} />)}
+            {related.map((p) => (
+              <ProductCard key={p.slug} product={p} />
+            ))}
           </div>
         </section>
       )}
